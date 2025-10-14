@@ -7,7 +7,6 @@ def salvar_historico(lista, nome_arquivo='lista.txt'):
             arquivo.write(str(valor) + '\n')
     print('Histórico salvo em', nome_arquivo)
 
-
 def ler_historico(nome_arquivo='lista.txt'):
     """Lê e exibe o conteúdo do histórico salvo."""
     try:
@@ -22,7 +21,6 @@ def limpar_historico(lista):
     lista.clear()
     print('Histórico em memória limpo!')
 
-
 def limpar_arquivo(nome_arquivo='lista.txt'):
     """Apaga o arquivo de histórico se ele existir."""
     if os.path.exists(nome_arquivo):
@@ -36,8 +34,5 @@ def limpar_tudo(lista, nome_arquivo='lista.txt'):
     limpar_historico(lista)
     limpar_arquivo(nome_arquivo)
     print('Histórico  limpo!')
-
-
-
 
 

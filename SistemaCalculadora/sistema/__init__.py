@@ -91,5 +91,3 @@ def sistema():
             sleep(1.5)
             print('FIM')
             break
-
-
