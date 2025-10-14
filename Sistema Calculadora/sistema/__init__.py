@@ -20,8 +20,14 @@ class Calculadora:
 print('-'*30)
 print('CALCULADORA'.center(30))
 print('-'*30)
-a = int(input("Digite um numero: "))
-b = int(input("Digite outro numero: "))
+while True:
+    try:
+        a = int(input("Digite um numero: "))
+        b = int(input("Digite outro numero: "))
+        break
+    except ValueError:
+        print('\033[31mErro: Digite um numero inteiro.\033[m')
+        continue
 resultado = Calculadora(a, b)
 while True:
     print('-'*30)
