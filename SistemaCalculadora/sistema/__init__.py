@@ -1,4 +1,5 @@
-from SistemaCalculadora.arquivo import salvar_historico, ler_historico, limpar_historico
+from SistemaCalculadora.arquivo import salvar_historico, ler_historico, limpar_tudo
+from time import sleep
 
 class Calculadora:
     def __init__(self, a, b):
@@ -18,11 +19,13 @@ class Calculadora:
         if self.b != 0:
             return self.a / self.b
         else:
-            return'Erro: divisão por zero!'
+            return'\033[31mErro: divisão por zero!\033[m'
+
 def sistema():
-    print('-'*30)
-    print('CALCULADORA'.center(30))
-    print('-'*30)
+    print('\033[34m-\033[m'*30)
+    print('\033[33mCALCULADORA\033[m'.center(40))
+    print('\033[33m-\033[m' * 30)
+    sleep(0.8)
     while True:
         try:
             a = float(input("Digite um numero: "))
@@ -31,13 +34,16 @@ def sistema():
         except ValueError:
             print('\033[31mErro: Digite um numero inteiro.\033[m')
 
+    sleep(1)
     resultado = Calculadora(a, b)
     lista=[]
 
     while True:
-        print('-'*30)
-        print('MENU'.center(30))
-        print('-'*30)
+        print('\033[34m-\033[m' * 30)
+        print('\033[33mMENU\033[m'.center(30))
+        print('\033[33m-\033[m' * 30)
+
+        sleep(0.6)
 
         print('[1] Somar os números')
         print('[2] Subtrair os números')
@@ -48,8 +54,11 @@ def sistema():
         print('[7] Ler histórico do arquivo')
         print('[8] Limpar historico')
         print('[9] Sair do programa')
-
-        decisao = int(input('Decisão: '))
+        try:
+            decisao = int(input('Decisão: '))
+        except ValueError:
+            print('\033[31mErro: Digite um numero inteiro de 1 a 9\033[m')
+            continue
 
         if decisao == 1:
             res = resultado.soma()
@@ -65,8 +74,8 @@ def sistema():
             lista.append(f"Multiplicação: {res}")
         elif decisao == 4:
             res = resultado.divisao()
-            print(f'Resultado: {res}')
-            lista.append(f"Divisão: {res}")
+            print(f'Resultado: {res:.2f}')
+            lista.append(f"Divisão: {res:.2f}")
         elif decisao == 5:
             print('Histórico: \n')
             for item in lista:
@@ -76,9 +85,11 @@ def sistema():
         elif decisao == 7:
             ler_historico()
         elif decisao == 8:
-            limpar_historico(lista)
+            limpar_tudo(lista)
         elif decisao == 9:
             print('Saindo do programa...')
+            sleep(1.5)
+            print('FIM')
             break
 
 

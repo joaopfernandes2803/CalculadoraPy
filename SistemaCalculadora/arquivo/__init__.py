@@ -1,3 +1,5 @@
+import os
+
 def salvar_historico(lista, nome_arquivo='lista.txt'):
     """Salva o histórico em um arquivo de texto."""
     with open(nome_arquivo, 'w') as arquivo:
@@ -16,11 +18,25 @@ def ler_historico(nome_arquivo='lista.txt'):
     except FileNotFoundError:
         print('Nenhum histórico salvo ainda.')
 
-
 def limpar_historico(lista):
-    """Limpa o histórico atual da memória."""
     lista.clear()
-    print('Histórico limpo!')
+    print('Histórico em memória limpo!')
+
+
+def limpar_arquivo(nome_arquivo='lista.txt'):
+    """Apaga o arquivo de histórico se ele existir."""
+    if os.path.exists(nome_arquivo):
+        os.remove(nome_arquivo)
+        print(f'Arquivo {nome_arquivo} apagado com sucesso!')
+    else:
+        print(f'Nenhum arquivo {nome_arquivo} encontrado.')
+
+def limpar_tudo(lista, nome_arquivo='lista.txt'):
+    """Limpa tanto o histórico em memória quanto o arquivo físico."""
+    limpar_historico(lista)
+    limpar_arquivo(nome_arquivo)
+    print('Histórico  limpo!')
+
 
 
 
